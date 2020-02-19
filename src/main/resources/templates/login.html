@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<center>
+<span class="authenticateUser" >
+        <p> <b> Are you a valid seller ? Then login to view or edit </b></p>
+        <form action="#" th:action="@{/api/products}" method="post" >
+            <table>
+               <tr>
+                  <td>UserID:</td>
+                  <td><input type="text" th:name="id" th:placeholder="id"/></td>
+               </tr>
+               <tr><td>Password:</td><td><input type="text" th:name="password" th:placeholder="password"/></td>
+               </tr>
+          </table>
+                <p><tr><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></tr></p>
+         </form>
+    </span>
+</center>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div>
+         <span class="getProducts">
+            <p><b>Available Products! Hurry !! </b></p>
+            <p th:if="${productList?.isEmpty()}">No products yet.</p>
+            <table>
+               <tr th:if="${not productList?.isEmpty()}">
+                  <td>Name</td>
+                  <td>Id</td>
+                  <td>Price</td>
+                  <td>Timestamp</td>
+               </tr>
+               <tr th:each="product: ${productList}">
+                  <td bgcolor="red" th:text="${product.name}"></td>
+                  <td th:text="${product.id}"></td>
+                  <td th:text="${product.currentPrice}"></td>
+                  <td th:text="${product.timestamp}"></td>
+               </tr>
+            </table>
+         </span>
+    <br>
+    <span class="setProducts">
+        <p> <b> Are you a valid seller ? Post your product details below : </b></p>
+        <form action="#" th:action="@{/api/products}" method="post" th:object="${product}">
+            <table>
+               <tr>
+                  <td>Name:</td>
+                  <td><input type="text" th:field="*{name}"/></td>
+                  <span class="newspan" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/>
+               </tr>
+               <tr><td>currentPrice:</td><td><input type="text" th:field="*{currentPrice}"/></td></tr>
+               <tr><td>Timestamp:</td><td><input type="text" th:field="*{timestamp}"/></p></td></tr>
+          </table>
+                <p><tr><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></tr></p>
+         </form>
+    </span>
+    <br>
+    <span class="getProductById">
+        <p><b> Checkout Product details</b></p>
+        <form  th:action="@{/api/products/}" method="get">
+               <table>
+                  <tr>
+                     <td>Enter Id:</td>
+                     <td><input type="text" th:name="id" th:placeholder="id"/></td>
+                  </tr>
+               </table>
+            <p><tr><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></tr></p>
+        </form>
+         </span>
+    <br>
+    <span class="updateProducts">
+            <p><b> Update Product Price</b></p>
+            <form action="#" th:action="@{/api/products}" method="post" th:object="${product}">
+               <table>
+                  <tr>
+                     <td>Id:</td>
+                     <td><input type="text" th:field="*{id}"/></td>
+                  </tr>
+                  <tr>
+                     <td>currentPrice</td>
+                     <td><input type="text" th:field="*{currentPrice}"/></td>
+                  </tr>
+                  <tr>
+                     <td>timestamp</td>
+                     <td><input type="text" th:field="*{timestamp}"/></td>
+                  </tr>
+               </table>
+                <p><tr><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></tr></p>
+            </form>
+         </span>
+    <br>
+</div>
+</body>
+</html>

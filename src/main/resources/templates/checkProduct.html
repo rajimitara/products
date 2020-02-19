@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Surf individual product</title>
+</head>
+
+<p th:if="${product == null}"> Product is unavailable </p>
+    <span th:text="${product.name}"></span>
+    <span th:text="${product.id}"></span>
+    <span th:text="${product.currentPrice}"></span>
+    <span th:text="${product.timestamp}"></span>
+
+<a href="javascript:history.back()">Go To Main Page</a>
+<body>
+
+</body>
+</html>
