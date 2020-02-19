@@ -6,6 +6,10 @@
 </head>
 <body>
 <div>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log Out"/>
+    </form>
          <span class="getProducts">
             <p><b>Available Products! Hurry !! </b></p>
             <p th:if="${productList?.isEmpty()}">No products yet.</p>
@@ -21,6 +25,8 @@
                   <td th:text="${product.id}"></td>
                   <td th:text="${product.currentPrice}"></td>
                   <td th:text="${product.timestamp}"></td>
+                  <td><a type="button" class="btn btn-success"
+                          th:href="@{/api/products/update/{id}(id=${product.id})}">Update</a></td>
                </tr>
             </table>
          </span>
@@ -54,27 +60,7 @@
         </form>
          </span>
     <br>
-    <span class="updateProducts">
-            <p><b> Update Product Price</b></p>
-            <form action="#" th:action="@{/api/products}" method="post" th:object="${product}">
-               <table>
-                  <tr>
-                     <td>Id:</td>
-                     <td><input type="text" th:field="*{id}"/></td>
-                  </tr>
-                  <tr>
-                     <td>currentPrice</td>
-                     <td><input type="text" th:field="*{currentPrice}"/></td>
-                  </tr>
-                  <tr>
-                     <td>timestamp</td>
-                     <td><input type="text" th:field="*{timestamp}"/></td>
-                  </tr>
-               </table>
-                <p><tr><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></tr></p>
-            </form>
-         </span>
-    <br>
+
 </div>
 </body>
 </html>

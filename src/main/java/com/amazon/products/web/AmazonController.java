@@ -32,11 +32,12 @@ public class AmazonController {
                 return "products";
             }else{
                 Optional<AmazonProduct> amazonProductAvailable = productDao.findById(id.trim());
-                if (amazonProductAvailable.isPresent())
+                if (amazonProductAvailable.isPresent()) {
                     model.addAttribute("product", amazonProductAvailable.get());
-                else
-                    model.addAttribute("product",product);
-                return "checkProduct";
+                    return "checkProduct";
+                }else {
+                   return "redirect:/api/products";
+                }
             }
     }
 
@@ -64,7 +65,6 @@ public class AmazonController {
 
     }
 
-
     //Update existing products.
     //Thymeleaf does not support PUT and hence did update of existing resource with Post mapping. But correct way is to use PUT
 
@@ -77,5 +77,10 @@ public class AmazonController {
             productDao.save(oldProduct.get());
         }
         return "redirect:/api/products";
+    }
+
+    @GetMapping(path = "/logout")
+    public String getloginPage(Model model) {
+        return "login";
     }
 }

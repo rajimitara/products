@@ -7,6 +7,12 @@
 </head>
 <body>
 <center>
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
 <span class="authenticateUser" >
         <p> <b> Are you a valid seller ? Then login to view or edit </b></p>
         <form action="#" th:action="@{/api/products}" method="post" >

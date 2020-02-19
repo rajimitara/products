@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -33,15 +34,17 @@ public class ProductsApplicationTests {
     @MockBean
     private ProductDao productDao;
 
+    @WithMockUser("USER")
     @Test
     public void validateGetAllProducts() throws Exception {
         mockMvc.perform(get("/api/products")).andExpect(status().isOk()).
                 andExpect(view().name("products"));
     }
 
+    @WithMockUser("USER")
     @Test
     public void validateGetByIdProducts() throws Exception {
-        mockMvc.perform(get("/api/products/").param("id","abc").contentType(MediaType.APPLICATION_JSON)).
-                andExpect(status().isOk()).andExpect(view().name("checkProduct"));
+        mockMvc.perform(get("/api/products/").param("id","b0203c10-ac28-4ea5-97ad-72ceec72d15f").contentType(MediaType.APPLICATION_JSON)).
+                andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/api/products"));
     }
 }

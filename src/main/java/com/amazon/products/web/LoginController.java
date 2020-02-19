@@ -21,6 +21,7 @@ public class LoginController {
       return "login";
     }
 
+
     //Authenticate seller and direct to products page.
     @PostMapping(path = "/")
     public String loginUser(@Valid @ModelAttribute AmazonProduct product, BindingResult bindingResult,
@@ -28,10 +29,6 @@ public class LoginController {
         if (id == null || name == null)
             return "redirect:/";
 
-        if (id.equals("dummy") && name.equals("dummy")) {
-            //model.addAttribute("name",name)
-            return "product";
-        }
-        return "redirect:/";
+         return "product";
     }
 }
