@@ -15,7 +15,7 @@
 	<description>Inventory style project in Spring Boot to sell products to retail customer directly</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>9</java.version>
 	</properties>
 
 	<dependencies>
